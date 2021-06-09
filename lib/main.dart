@@ -60,10 +60,28 @@ class TodoListPage extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-          Text('ニンジンを買う'),
-          Text('タマネギを買う'),
-          Text('ジャガイモを買う'),
-          Text('カレールーを買う'),
+          // *** 追加する部分 ***
+          // CardとListTileを使い、簡単に整ったUIを作成
+          Card(
+            child: ListTile(
+              title: Text('ニンジンを買う'),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('タマネギを買う'),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('ジャガイモを買う'),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('カレールーを買う'),
+            ),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -80,7 +98,6 @@ class TodoListPage extends StatelessWidget {
     );
   }
 }
-
 
 // リスト追加画面用Widget
 class TodoAddPage extends StatelessWidget {
