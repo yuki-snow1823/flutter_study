@@ -101,30 +101,45 @@ class TodoListPage extends StatelessWidget {
   }
 }
 
-// リスト追加画面用Widget
-// リスト追加画面用Widget
-class TodoAddPage extends StatelessWidget {
+
+class TodoAddPage extends StatefulWidget {
+  @override
+  _TodoAddPageState createState() => _TodoAddPageState();
+}
+
+class _TodoAddPageState extends State<TodoAddPage> {
+  // 入力されたテキストをデータとして持つ
+  String _text = '';
+  // データを元に表示するWidget
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // *** 追加する部分 ***
       appBar: AppBar(
         title: Text('リスト追加'),
       ),
-      // *** 追加する部分 ***
       body: Container(
         // 余白を付ける
         padding: EdgeInsets.all(64),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            
-            // テキスト入力
-            TextField(),
+            // 入力されたテキストを表示
+            Text(_text, style: TextStyle(color: Colors.blue)),
             const SizedBox(height: 8),
-
-            Container(
-              // 横幅いっぱいに広げる
+            // テキスト入力
+            TextField(
+              // 入力されたテキストの値を受け取る（valueが入力されたテキスト）
+              onChanged: (String value) {
+                // データが変更したことを知らせる（画面を更新する）
+                setState(() {
+                  // データを変更
+                  _text = value;
+                });
+              },
+            ),
+            const SizedBox(height: 8),
+            Container( 
+                            // 横幅いっぱいに広げる
               width: double.infinity,
               // リスト追加ボタン
               child: ElevatedButton(
@@ -133,9 +148,8 @@ class TodoAddPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-
             Container(
-              // 横幅いっぱいに広げる
+                            // 横幅いっぱいに広げる
               width: double.infinity,
               // キャンセルボタン
               child: TextButton(
@@ -144,8 +158,7 @@ class TodoAddPage extends StatelessWidget {
                   // "pop"で前の画面に戻る
                   Navigator.of(context).pop();
                 },
-                child: Text('キャンセル'),
-              ),
+                child: Text('キャンセル
             ),
           ],
         ),
