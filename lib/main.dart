@@ -53,47 +53,26 @@ class TodoListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // *** 追加する部分 ***
       // AppBarを表示し、タイトルも設定
       appBar: AppBar(
         title: Text('リスト一覧'),
       ),
-      body: ListView(
-        children: <Widget>[
-          // *** 追加する部分 ***
-          // CardとListTileを使い、簡単に整ったUIを作成
-          Card(
-            // 色の指定をしてみた。
-            color: Colors.blue,
-            child: ListTile(
-              title: Text('ニンジンを買う'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('タマネギを買う'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('ジャガイモを買う'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('カレールーを買う'),
-            ),
-          ),
-        ],
-      ),
+      // ListViewを使いリスト一覧を表示
+      body: ListView( /* --- 省略 --- */ ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
+        // *** 追加する部分 ***
+        onPressed: () async {
+          // "push"で新規画面に遷移
+          // リスト追加画面から渡される値を受け取る
+          final newListText = await Navigator.of(context).push(
             MaterialPageRoute(builder: (context) {
               // 遷移先の画面としてリスト追加画面を指定
               return TodoAddPage();
             }),
           );
+          if (newListText != null) {
+            // キャンセルした場合は newListText が null となるので注意
+          }
         },
         child: Icon(Icons.add),
       ),
@@ -101,12 +80,12 @@ class TodoListPage extends StatelessWidget {
   }
 }
 
-
+// stateを作って
 class TodoAddPage extends StatefulWidget {
   @override
   _TodoAddPageState createState() => _TodoAddPageState();
 }
-
+// それを使う
 class _TodoAddPageState extends State<TodoAddPage> {
   // 入力されたテキストをデータとして持つ
   String _text = '';
@@ -139,7 +118,7 @@ class _TodoAddPageState extends State<TodoAddPage> {
             ),
             const SizedBox(height: 8),
             Container( 
-                            // 横幅いっぱいに広げる
+              // 横幅いっぱいに広げる
               width: double.infinity,
               // リスト追加ボタン
               child: ElevatedButton(
@@ -156,9 +135,10 @@ class _TodoAddPageState extends State<TodoAddPage> {
                 // ボタンをクリックした時の処理
                 onPressed: () {
                   // "pop"で前の画面に戻る
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pop(_text);
                 },
-                child: Text('キャンセル
+                child: Text('キャンセル')
+              )
             ),
           ],
         ),
