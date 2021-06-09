@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// 自分で何か検索して入れてみてもいいかも
+// 機能追加
 
 void main() {
   // 最初に表示するWidget
@@ -56,8 +58,13 @@ class TodoListPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('リスト一覧'),
       ),
-      body: Center(
-        child: Text('リスト一覧画面'),
+      body: ListView(
+        children: <Widget>[
+          Text('ニンジンを買う'),
+          Text('タマネギを買う'),
+          Text('ジャガイモを買う'),
+          Text('カレールーを買う'),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
