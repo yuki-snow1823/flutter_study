@@ -63,6 +63,8 @@ class TodoListPage extends StatelessWidget {
           // *** 追加する部分 ***
           // CardとListTileを使い、簡単に整ったUIを作成
           Card(
+            // 色の指定をしてみた。
+            color: Colors.blue,
             child: ListTile(
               title: Text('ニンジンを買う'),
             ),
@@ -100,18 +102,52 @@ class TodoListPage extends StatelessWidget {
 }
 
 // リスト追加画面用Widget
+// リスト追加画面用Widget
 class TodoAddPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: TextButton(
-          // ボタンをクリックした時の処理
-          onPressed: () {
-            // "pop"で前の画面に戻る
-            Navigator.of(context).pop();
-          },
-          child: Text('リスト追加画面（クリックで戻る）'),
+      // *** 追加する部分 ***
+      appBar: AppBar(
+        title: Text('リスト追加'),
+      ),
+      // *** 追加する部分 ***
+      body: Container(
+        // 余白を付ける
+        padding: EdgeInsets.all(64),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            
+            // テキスト入力
+            TextField(),
+            const SizedBox(height: 8),
+
+            Container(
+              // 横幅いっぱいに広げる
+              width: double.infinity,
+              // リスト追加ボタン
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text('リスト追加', style: TextStyle(color: Colors.white)),
+              ),
+            ),
+            const SizedBox(height: 8),
+
+            Container(
+              // 横幅いっぱいに広げる
+              width: double.infinity,
+              // キャンセルボタン
+              child: TextButton(
+                // ボタンをクリックした時の処理
+                onPressed: () {
+                  // "pop"で前の画面に戻る
+                  Navigator.of(context).pop();
+                },
+                child: Text('キャンセル'),
+              ),
+            ),
+          ],
         ),
       ),
     );
