@@ -22,12 +22,53 @@ class MyTodoApp extends StatelessWidget {
 }
 
 // リスト一覧画面用Widget
+// class TodoListPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     print(context);
+//     return Scaffold(
+//       body: Center(
+//         child: Text('リスト一覧画面'),
+//       ),
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: () {
+//           // "push"で新規画面に遷移
+//           Navigator.of(context).push(
+//             MaterialPageRoute(builder: (context) {
+//               // 遷移先の画面としてリスト追加画面を指定
+//               return TodoAddPage();
+//             }),
+//           );
+//         },
+//         child: Icon(Icons.add),
+//       ),
+//     );
+//   }
+// }
+
+// リスト一覧画面用Widget
 class TodoListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // *** 追加する部分 ***
+      // AppBarを表示し、タイトルも設定
+      appBar: AppBar(
+        title: Text('リスト一覧'),
+      ),
       body: Center(
         child: Text('リスト一覧画面'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) {
+              // 遷移先の画面としてリスト追加画面を指定
+              return TodoAddPage();
+            }),
+          );
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
