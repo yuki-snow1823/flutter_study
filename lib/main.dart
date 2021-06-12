@@ -37,6 +37,7 @@ class _TodoListPageState extends State<TodoListPage> {
   List<String> todoList = [];
 
   @override
+  // 多分 todolistpageの中身がstatefulになる？
   Widget build(BuildContext context) {
     return Scaffold(
       // AppBarを表示し、タイトルも設定
@@ -68,6 +69,7 @@ class _TodoListPageState extends State<TodoListPage> {
         onPressed: () async {
           // "push"で新規画面に遷移
           // リスト追加画面から渡される値を受け取る
+          // contextに全部入る？
           final newListText = await Navigator.of(context).push(
             MaterialPageRoute(builder: (context) {
               // 遷移先の画面としてリスト追加画面を指定
@@ -88,6 +90,7 @@ class _TodoListPageState extends State<TodoListPage> {
   }
 }
 
+// 何かstateに関するものを使うなら宣言する
 class TodoAddPage extends StatefulWidget {
   @override
   _TodoAddPageState createState() => _TodoAddPageState();
